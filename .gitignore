@@ -1,0 +1,12 @@
+# Node modules
+client/node_modules/
+server/node_modules/
+
+# Environment files
+server/.env
+*.env
+
+# Optional: Ignore system/IDE files
+.DS_Store
+*.log
+.vscode/

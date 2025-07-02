@@ -1,0 +1,35 @@
+.sidebar {
+  width: 220px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 16px;
+  height: 100vh;
+}
+
+.board-list {
+  list-style: none;
+  padding: 0;
+}
+
+.board-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.board-list li:hover,
+.board-list li.active {
+  background-color: #34495e;
+}
+.add-board-btn {
+  margin-top: 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
