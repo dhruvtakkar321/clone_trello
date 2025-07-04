@@ -1,25 +1,24 @@
-const express = require('express');
-const cors = require('cors');
+require("dotenv").config();
+const path = require("path");
+const app = require("./app");
+const connectDB = require("./config/db");
 
-const app = express();
+const PORT = process.env.PORT || 5000;
 
-// CORS
-app.use(cors({
-  origin: 'http://localhost:5173',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+const __dirnamePath = path.resolve();
 
-app.use(express.json());
+// ✅ Move static and wildcard route logic into app.js instead!
+if (process.env.NODE_ENV === "production") {
+  const express = require("express"); // Only needed here
+  app.use(express.static(path.join(__dirnamePath, "client/build")));
 
-// Routes
-app.use('/api/auth', require('./routes/auth.route'));
-app.use('/api/boards', require('./routes/board.route'));
-app.use('/api', require('./routes/task.route')); // ✅ updated here
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirnamePath, "client/build/index.html"));
+  });
+}
 
-// Optional: health check
-app.get('/', (req, res) => {
-  res.send('Trello Clone Backend API is running!');
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+  });
 });
-
-module.exports = app;
