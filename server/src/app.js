@@ -13,11 +13,11 @@ app.use(cors({
 app.use(express.json());
 
 // ✅ Routes
-app.use('/auth', require('./routes/auth.route'));
+app.use('/api/auth', require('./routes/auth.route'));     // updated prefix
+app.use('/api/boards', require('./routes/board.route'));  // ✅ FIXED HERE
+app.use('/api/tasks', require('./routes/task.route'));    // ✅ moved to /api/tasks
 
-app.use('/board', require('./routes/board.route'));
-app.use('/', require('./routes/task.route'));
-
+// ✅ Optional: health check route
 app.get('/', (req, res) => {
   res.send('Trello Clone Backend API is running!');
 });
