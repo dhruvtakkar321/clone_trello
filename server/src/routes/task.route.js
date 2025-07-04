@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const {
   createTask,
   getTasks,
@@ -8,16 +7,10 @@ const {
   deleteTask
 } = require('../controllers/task.controller');
 
-// GET all tasks for a board
-router.get('/:boardId', getTasks);         // GET /api/tasks/:boardId
-
-// POST a new task under a board
-router.post('/:boardId', createTask);      // POST /api/tasks/:boardId
-
-// PUT update a task
-router.put('/:taskId', updateTask);        // PUT /api/tasks/:taskId
-
-// DELETE a task
-router.delete('/:taskId', deleteTask);     // DELETE /api/tasks/:taskId
+// These are correct and should match frontend
+router.get('/boards/:id/task', getTasks);
+router.post('/boards/:id/task', createTask);
+router.put('/task/:taskId', updateTask);
+router.delete('/task/:taskId', deleteTask);
 
 module.exports = router;
